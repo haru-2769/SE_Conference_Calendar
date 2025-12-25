@@ -53,7 +53,8 @@
         </div>
       </div>
       <div class="conf-container">
-        {% for conf in site.data.conferences %}
+        {% assign all_confs = site.data.conferences | concat: site.data.conferences_original %}
+        {% for conf in all_confs %}
         <div id="{{ conf.name | append: conf.year | slugify }}" class="conf {% for sub in conf.sub %} {{sub}} {% endfor %}">
           <div class="row">
               <div class="col-xs-12 col-sm-6">
@@ -88,7 +89,8 @@
     $(function() {
       deadlineByConf = {};
 
-      {% for conf in site.data.conferences %}
+      {% assign all_confs = site.data.conferences | concat: site.data.conferences_original %}
+      {% for conf in all_confs %}
       {% assign conf_id = conf.name | append: conf.year | slugify %}
       {% if conf.deadline == "TBA" %}
       $('#{{ conf_id }} .timer').html("TBA");

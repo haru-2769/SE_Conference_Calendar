@@ -61,7 +61,8 @@
         </div>
       </div>
       <div class="conf-container">
-        {% for conf in site.data.conferences %}
+        {% assign all_confs = site.data.conferences | concat: site.data.conferences_original %}
+        {% for conf in all_confs %}
         {% assign num_deadlines = conf.deadline.size %}
         {% assign range_end = conf.deadline.size | minus: 1 %}
         {% for i in (0..range_end) %}

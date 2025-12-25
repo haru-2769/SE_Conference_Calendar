@@ -1,0 +1,13 @@
+---
+# ICSEs
+- name: ICSE
+  description: International Conference on Software Engineering - Research Track
+  year: 2026
+  link: https://conf.researchr.org/track/icse-2026/icse-2026-research-track
+  deadline:
+    - "2025-03-14 23:59"
+    - "2025-07-18 23:59"
+  date: April 12 - April 18, 2026
+  place: Rio de Janeiro, Brazil
+  note: Mandatory abstract deadline on March 7 (first deadline) and July 11 (second deadline) 2025.
+  tags: [CO, RPT]
