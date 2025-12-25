@@ -3,7 +3,8 @@
 $(function() {
   deadlineByConf = {};
 
-  {% for conf in site.data.conferences %}
+  {% assign all_confs = site.data.conferences | concat: site.data.conferences_original %}
+  {% for conf in all_confs %}
   // {{ conf.name }} {{ conf.year }}
   {% if conf.deadline[0] == "TBA" %}
   {% assign conf_id = conf.name | append: conf.year | append: '-0' | slugify %}
