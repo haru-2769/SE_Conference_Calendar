@@ -1,0 +1,25 @@
+name: Sync Upstream Conferences
+
+on:
+  schedule:
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch upstream conferences.yml
+        run: |
+          curl -o _data/conferences.yml https://raw.githubusercontent.com/se-deadlines/se-deadlines.github.io/main/_data/conferences.yml
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/conferences.yml
+          git diff --staged --quiet || git commit -m "Sync conferences.yml from upstream"
+          git push origin HEAD:main
