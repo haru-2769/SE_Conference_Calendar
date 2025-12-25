@@ -7,7 +7,7 @@ $(function() {
   {% for conf in all_confs %}
   // {{ conf.name }} {{ conf.year }}
   {% if conf.deadline[0] == "TBA" %}
-  {% assign conf_id = conf.name | append: conf.year | append: '-0' | slugify %}
+  {% assign conf_id = conf.name | append: conf.year | append: '-' | append: forloop.index | append: '-0' | slugify %}
   $('#{{ conf_id }} .timer').html("TBA");
   $('#{{ conf_id }} .deadline-time').html("TBA");
   deadlineByConf["{{ conf_id }}"] = moment.tz("3000-01-01", "Etc/GMT+12");
@@ -47,7 +47,7 @@ $(function() {
 
   {% assign range_end = conf.deadline.size | minus: 1 %}
   {% for i in (0..range_end) %}
-  {% assign conf_id = conf.name | append: conf.year | append: '-' | append: i | slugify %}
+  {% assign conf_id = conf.name | append: conf.year | append: '-' | append: forloop.parentloop.index | append: '-' | append: i | slugify %}
   var deadlineId = {{ i }};
   if (deadlineId < parsedDeadlines.length) {
     var confDeadline = parsedDeadlines[deadlineId];
